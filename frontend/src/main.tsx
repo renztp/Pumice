@@ -5,11 +5,20 @@ import App from "./App.tsx";
 import "./index.css";
 import LoginPage from "./pages/auth/LoginPage.tsx";
 import RegisterPage from "./pages/auth/RegisterPage.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
+import Editor from "./components/editor/Editor.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        path: "/:collectionId/:noteId",
+        element: <Editor />,
+      },
+    ],
   },
   {
     path: "/login",
