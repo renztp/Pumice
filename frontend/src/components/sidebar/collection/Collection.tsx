@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { FaFile, FaFolder } from "react-icons/fa6";
 
 interface Item {
+  id: string;
   title: string;
   collectionName: string;
   levels: number;
@@ -14,15 +16,26 @@ interface ItemsProp extends Item {
 
 // TODO: Clean this code up
 function CollectionItem(props) {
+  function computeNodeClass() {
+    const classNode = ["flex", "items-center", "mb-2"];
+    if (props?.isCollection) {
+      classNode.push("loop-collection");
+      if (classNode.includes("loop-item")) {
+        classNode.splice(classNode.indexOf("loop-item"), 1);
+      }
+    } else {
+      classNode.push("loop-item");
+      if (classNode.includes("loop-collection")) {
+        classNode.splice(classNode.indexOf("loop-collection"), 1);
+      }
+    }
+
+    return classNode.join(" ");
+  }
+
   return (
     <>
-      <li
-        className={
-          props?.levels === 0
-            ? "flex items-center mb-2"
-            : "flex items-center loop-item mb-2"
-        }
-      >
+      <li className={computeNodeClass()} onClick={props.toggleCollapse}>
         <span className="inline-block mr-2">
           {props?.isCollection ? <FaFolder /> : <FaFile />}
         </span>
@@ -35,30 +48,56 @@ function CollectionItem(props) {
   );
 }
 
-const CollectionLoop = ({ items }: { items: Item[] }) => {
+const CollectionLoop = ({
+  items,
+  folderKey,
+}: {
+  items?: Item[];
+  folderKey?: string;
+}) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
   // TODO: Replace the manual height/width with ASCII text
+  function collasepFolderNode(e) {
+    console.log("collapsed!");
+  }
+
+  const toggleCollapse = (e: Event) => {
+    console.log("toggleCollapse clicked!");
+    e.preventDefault();
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
     <ul
-      key={items[0].key}
-      className={items[0]?.levels === 0 ? "ml-6" : "loop ml-6"}
+      key={folderKey}
+      data-node-id={folderKey}
+      className={
+        items[0]?.levels === 0
+          ? "ml-6 cursor-pointer"
+          : "loop ml-6 cursor-pointer"
+      }
     >
       {items.map((item: any, iter) => {
         if (item?.items && item?.items.length > 0) {
           return (
             <>
               <CollectionItem
-                key={item.key}
+                key={item.id}
                 collectionName={item?.collectionName}
                 levels={item?.levels}
                 isCollection={true}
+                toggleCollapse={(e) => toggleCollapse(e)}
               />
-              <CollectionLoop key={item.key} items={item?.items} />
+              {!isCollapsed && (
+                <CollectionLoop folderKey={item.id} items={item?.items} />
+              )}
             </>
           );
         } else {
           return (
             <CollectionItem
-              key={item.key}
+              key={item.id}
               title={item?.title}
               levels={item?.levels}
             />
