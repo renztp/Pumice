@@ -52,7 +52,7 @@ const CollectionLoop = ({
   items,
   folderKey,
 }: {
-  items?: Item[];
+  items: Item[];
   folderKey?: string;
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -78,7 +78,7 @@ const CollectionLoop = ({
           : "loop ml-6 cursor-pointer"
       }
     >
-      {items.map((item: any, iter) => {
+      {items.map((item: any) => {
         if (item?.items && item?.items.length > 0) {
           return (
             <>

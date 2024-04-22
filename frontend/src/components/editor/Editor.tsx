@@ -1,6 +1,10 @@
+import MetaEditor from "./meta-editor/MetaEditor";
+
 function Editor() {
   return(
-    <h1>This is the editor</h1>
+    <div>
+      <MetaEditor />
+    </div>
   )
 }
 

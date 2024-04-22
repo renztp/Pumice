@@ -7,26 +7,31 @@ const testCollections = [
     levels: 0,
     collectionName: "Python",
     title: "Note #0 on Level 0",
+    slug: '/python',
     items: [
       {
         id: '2',
         levels: 1,
         title: "Beginner",
+        slug: '/beginner'
       },
       {
         id: '3',
         levels: 1,
         title: "Advanced",
+        slug: '/advanced'
       },
       {
         id: '4',
         levels: 1,
         collectionName: "Data Structures",
+        slug: '/data-structures',
         items: [
           {
             id: '5',
             levels: 2,
             title: "Dynamic Arrays",
+            slug: '/dynamic-arrays'
           },
         ],
       },
@@ -42,11 +47,13 @@ const testCollections = [
         id: '7',
         levels: 1,
         title: "Beginner",
+        slug: '/beginner'
       },
       {
         id: '8',
         levels: 1,
         title: "Fullstack Development",
+        slug: '/fullstack-development'
       },
     ],
   },
