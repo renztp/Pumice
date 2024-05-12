@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import collectionsRoutes from "./routes/collections.route.js";
+import usersRoutes from './routes/users.route.js';
 import notesRoutes from "./routes/notes.route.js";
 import morgan from 'morgan';
 dotenv.config();
@@ -36,6 +37,7 @@ app.get(`${apiBaseUrl}/`, (req, res) => {
 });
 app.use(`${apiBaseUrl}/notes`, notesRoutes);
 app.use(`${apiBaseUrl}/collections`, collectionsRoutes);
+app.use(`${apiBaseUrl}/user`, usersRoutes)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
