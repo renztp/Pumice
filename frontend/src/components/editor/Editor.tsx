@@ -24,7 +24,7 @@ function Editor() {
   }
 
   return (
-    <div className="p-5">
+    <div>
       <EditorControls toggleEditing={toggleEditing} />
       <MetaEditor />
       <div className="editor-wrapper">

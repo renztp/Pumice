@@ -9,7 +9,7 @@ function App() {
       <Header />
       <div className="main-body">
         <Sidebar />
-        <div className="content">
+        <div className="content p-5">
           <Outlet />
         </div>
       </div>
