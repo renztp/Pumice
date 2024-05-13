@@ -5,6 +5,7 @@ import collectionsRoutes from "./routes/collections.route.js";
 import usersRoutes from './routes/users.route.js';
 import notesRoutes from "./routes/notes.route.js";
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 dotenv.config();
 import cors from "cors";
 
@@ -21,6 +22,7 @@ app.use(
   })
 );
 app.use(morgan('dev'));
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
