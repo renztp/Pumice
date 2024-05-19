@@ -20,6 +20,16 @@ export const noteSlice = createSlice({
         updatedAt: new Date(),
       })
     },
+    editNote: (state, action) => {
+      const { id, title, content, tags } = action.payload
+      const existingNote = state.notes.find((note) => note.id === id)
+      if (existingNote) {
+        existingNote.title = title
+        existingNote.content = content
+        existingNote.tags = tags
+        existingNote.updatedAt = new Date()
+      }
+    },
     deleteNote: (state, action) => {
       state.notes = state.notes.filter((note) => note.id !== action.payload)
     },

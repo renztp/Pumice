@@ -12,17 +12,17 @@ const router = express.Router();
 export const registerUser = async (req: Request, res: Response) => {
   console.log('test!')
   try {
-    const { username, email, password } = req.body;
+    const { fullName, email, password } = req.body;
 
-    const existingUser = await User.findOne({ username });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).send('Username already exists');
+      return res.status(400).send('Email already exists');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      username,
+      fullName,
       email,
       password: hashedPassword
     });
@@ -38,14 +38,14 @@ export const registerUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).send('Invalid username or password');
+      return res.status(401).send('Invalid email or password');
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).send('Invalid username or password');
+      return res.status(401).send('Invalid email or password');
     }
     const token = createAuthToken(user);
     res.send({ token });
@@ -56,7 +56,7 @@ export const loginUser = async (req, res) => {
 }
 
 function createAuthToken(user) {
-  const payload = { userId: user._id, username: user.username };
+  const payload = { userId: user._id, email: user.email };
   return jwt.sign(payload, secretKey, { expiresIn: '1h' });
 }
 
