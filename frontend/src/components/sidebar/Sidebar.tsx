@@ -3,57 +3,57 @@ import CollectionLoop from "./collection/Collection";
 
 const testCollections = [
   {
-    id: '1',
+    id: "1",
     levels: 0,
     collectionName: "Python",
     title: "Note #0 on Level 0",
-    slug: '/python',
+    slug: "/python",
     items: [
       {
-        id: '2',
+        id: "2",
         levels: 1,
         title: "Beginner",
-        slug: '/beginner'
+        slug: "/beginner",
       },
       {
-        id: '3',
+        id: "3",
         levels: 1,
         title: "Advanced",
-        slug: '/advanced'
+        slug: "/advanced",
       },
       {
-        id: '4',
+        id: "4",
         levels: 1,
         collectionName: "Data Structures",
-        slug: '/data-structures',
+        slug: "/data-structures",
         items: [
           {
-            id: '5',
+            id: "5",
             levels: 2,
             title: "Dynamic Arrays",
-            slug: '/dynamic-arrays'
+            slug: "/dynamic-arrays",
           },
         ],
       },
     ],
   },
   {
-    id: '6',
+    id: "6",
     levels: 0,
     collectionName: "JavaScript",
     title: "Note #1 on Level 0",
     items: [
       {
-        id: '7',
+        id: "7",
         levels: 1,
         title: "Beginner",
-        slug: '/beginner'
+        slug: "/beginner",
       },
       {
-        id: '8',
+        id: "8",
         levels: 1,
         title: "Fullstack Development",
-        slug: '/fullstack-development'
+        slug: "/fullstack-development",
       },
     ],
   },
