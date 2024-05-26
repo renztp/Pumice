@@ -29,7 +29,16 @@ export const registerUser = async (req: Request, res: Response) => {
 
     await newUser.save();
     const token = createAuthToken(newUser);
-    res.json({ message: 'Registration successful', token });
+    res.cookie('token', token, {
+      maxAge: parseInt(process.env.COOKIE_EXPIRATION_DAYS) * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    })
+
+    res.status(201).send({
+      userId: newUser._id,
+      email: newUser.email,
+      fullName: newUser.fullName
+    })
   } catch (error) {
     res.status(500).send('Something went wrong');
     console.log(error);
@@ -48,7 +57,15 @@ export const loginUser = async (req, res) => {
       return res.status(401).send('Invalid email or password');
     }
     const token = createAuthToken(user);
-    res.send({ token });
+    res.cookie('token', token, {
+      maxAge: parseInt(process.env.COOKIE_EXPIRATION_DAYS) * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    })
+    res.status(200).send({
+      userId: user._id,
+      email: user.email,
+      fullName: user.fullName
+    });
   } catch (error) {
     res.status(500).send('Something went wrong');
     console.log(error);
