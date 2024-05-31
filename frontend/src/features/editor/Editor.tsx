@@ -1,7 +1,7 @@
-import MetaEditor from "./meta-editor/MetaEditor";
+import MetaEditor from "../meta-editor/components/MetaEditor";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import EditorControls from "./editor-controls/EditorControls";
+import EditorControls from "../editor-controls/EditorControls";
 import { useState } from "react";
 
 
