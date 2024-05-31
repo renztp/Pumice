@@ -1,5 +1,5 @@
 import { FaVault } from "react-icons/fa6";
-import CollectionLoop from "./collection/Collection";
+import CollectionLoop from "../../collection/Collection";
 
 const testCollections = [
   {
