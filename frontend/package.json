@@ -26,6 +26,8 @@
     "react-toastify": "^10.0.5",
     "remark-gfm": "^4.0.0",
     "sort-by": "^1.2.0",
+    "typescript-language-server": "^4.3.3",
+    "uniqid": "^5.4.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

@@ -9,7 +9,7 @@ function App() {
       <Header />
       <div className="main-body">
         <Sidebar />
-        <div className="content p-5">
+        <div className="content p-5 bg-[#F4F5F6]">
           <Outlet />
         </div>
       </div>

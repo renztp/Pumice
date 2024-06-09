@@ -53,3 +53,25 @@
   width: 100%;
   max-width: 450px;
 }
+/**/
+/* .edit-area { */
+/*   height: calc(100vh - 5vh); */
+/* } */
+
+.editor-wrapper textarea {
+  min-height: 70vh;
+}
+
+.preview-container {
+  min-height: 70vh;
+}
+
+.preview-container h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}

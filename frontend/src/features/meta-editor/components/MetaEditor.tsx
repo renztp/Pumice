@@ -1,6 +1,6 @@
 import { FaTags } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
-import Tags from "../../tag/Tags";
+import Tags from '../../tag/components/Tags';
 import { TagProps, TagsProps } from "../../tag/tag";
 
 
@@ -22,7 +22,6 @@ export default function MetaEditor() {
 
   return (
     <div>
-      <h1>Meta Editor</h1>
       <form>
         <div className="mb-3">
           <label className="flex items-center pl-2">
@@ -43,15 +42,6 @@ export default function MetaEditor() {
               type="text"
             />
           </label>
-        </div>
-
-        <div>
-          <button
-            type="submit"
-            className="rounded-md text-white font-medium py-3 bg-blue-500 w-full block text-center"
-          >
-            Save
-          </button>
         </div>
       </form>
     </div>

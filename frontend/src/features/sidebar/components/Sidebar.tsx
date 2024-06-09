@@ -62,7 +62,7 @@ const testCollections = [
 function Sidebar() {
   // TODO: Fix the height of the sidebar to the height of the screen
   return (
-    <div className="sidebar border-r h-screen">
+    <div className="sidebar border-r h-screen bg-[#2B2727] text-white">
       <div className="vault flex items-center justify-center pt-3 pb-2">
         <span className="inline-block mr-2">
           <FaVault />

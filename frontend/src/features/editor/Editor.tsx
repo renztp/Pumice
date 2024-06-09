@@ -1,9 +1,8 @@
-import MetaEditor from "../meta-editor/components/MetaEditor";
+import { useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import EditorControls from "../editor-controls/EditorControls";
-import { useState } from "react";
-
+import MetaEditor from "../meta-editor/components/MetaEditor";
 
 function Editor() {
   let markdown = `## Just a link: www.nasa.gov.`;
@@ -24,11 +23,23 @@ function Editor() {
   }
 
   return (
-    <div>
+    <div className="edit-area bg-white p-5">
+      <h1>Editor</h1>
       <EditorControls toggleEditing={toggleEditing} />
       <MetaEditor />
       <div className="editor-wrapper">
-      {editing ? <textarea className="w-full h-[70vh]" value={editorContent} onChange={e => handleEditorChange(e)}></textarea> : <Markdown remarkPlugins={[remarkGfm]}>{markdownContent}</Markdown>}
+        {editing ? (
+          <textarea
+            cols={100}
+            className="w-full bg-transparent p-5 outline-none border text-black"
+            value={editorContent}
+            onChange={(e) => handleEditorChange(e)}
+          ></textarea>
+        ) : (
+          <div className="preview-container">
+            <Markdown remarkPlugins={[remarkGfm]}>{markdownContent}</Markdown>
+          </div>
+        )}
       </div>
     </div>
   );

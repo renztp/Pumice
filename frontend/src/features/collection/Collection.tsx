@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 import { FaFile, FaFolder } from "react-icons/fa6";
+import uniqid from 'uniqid';
 
 interface Item {
   id: string;
@@ -33,6 +34,8 @@ function CollectionItem(props) {
     return classNode.join(" ");
   }
 
+  const itemUniqueId = uniqid();
+
   return (
     <>
       <li className={computeNodeClass()} onClick={props.toggleCollapse}>
@@ -51,9 +54,11 @@ function CollectionItem(props) {
 const CollectionLoop = ({
   items,
   folderKey,
+  loopId = "",
 }: {
   items: Item[];
   folderKey?: string;
+  loopId?: string;
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -68,14 +73,17 @@ const CollectionLoop = ({
     setIsCollapsed(!isCollapsed);
   };
 
+  // might need to refactor this or totally remove it and use a different method
+  const parentUniqueId = loopId === "" ? `parent-${uniqid()}` : `child-${loopId}`;
+
   return (
     <ul
       key={folderKey}
       data-node-id={folderKey}
       className={
         items[0]?.levels === 0
-          ? "ml-6 cursor-pointer"
-          : "loop ml-6 cursor-pointer"
+          ? `ml-6 cursor-pointer ${parentUniqueId}`
+          : `loop ml-6 cursor-pointer ${parentUniqueId}`
       }
     >
       {items.map((item: any) => {
@@ -87,10 +95,11 @@ const CollectionLoop = ({
                 collectionName={item?.collectionName}
                 levels={item?.levels}
                 isCollection={true}
+                className={`loop-collection ${parentUniqueId}`}
                 toggleCollapse={(e) => toggleCollapse(e)}
               />
               {!isCollapsed && (
-                <CollectionLoop folderKey={item.id} items={item?.items} />
+                <CollectionLoop folderKey={item.id} items={item?.items} loopId={parentUniqueId} />
               )}
             </>
           );

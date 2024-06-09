@@ -1,5 +1,5 @@
-import { MdOutlineClose } from "react-icons/md";
 import { FaBookOpenReader } from "react-icons/fa6";
+import { MdOutlineClose } from "react-icons/md";
 
 export default function EditorControls({ toggleEditing }) {
   return (
@@ -14,7 +14,13 @@ export default function EditorControls({ toggleEditing }) {
       </div>
       <div className="right-controls">
         <div className="buttong-group">
-          <button onClick={e => toggleEditing()} className="flex items-center"><FaBookOpenReader />&nbsp;Preview</button>
+          <button
+            onClick={(e) => toggleEditing()}
+            className="flex items-center"
+          >
+            <FaBookOpenReader />
+            &nbsp;Preview
+          </button>
         </div>
       </div>
     </div>

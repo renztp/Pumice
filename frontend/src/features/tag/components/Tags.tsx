@@ -1,6 +1,6 @@
 import React from 'react'
 import Tag from './Tag';
-import { TagsProps } from './tag'
+import { TagsProps } from '../tag'
 import { IoMdClose } from "react-icons/io";
 
 export default function Tags({tags, tagAction}: TagsProps | Element) {
